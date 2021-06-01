@@ -17,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -33,6 +34,7 @@ import javafx.stage.Stage;
 	    private Button run;
 	    @FXML
 	    private List<Circle> circles = new ArrayList<Circle>(); 
+	    
 	  
 	    
 	    private AllPoint aP = new AllPoint();
@@ -43,7 +45,7 @@ import javafx.stage.Stage;
 	    public void initialize(URL location, ResourceBundle resources) {
 	    	List<String> list = new ArrayList<String>();
 			try{
-	            BufferedReader br = new BufferedReader(new FileReader("E:\\Eclipse\\test.txt"));
+	            BufferedReader br = new BufferedReader(new FileReader("test.txt"));
 	            String s = null;
 	            while((s = br.readLine())!=null){
 	            	list.add(s);
@@ -59,12 +61,10 @@ import javafx.stage.Stage;
 	        	pt.setY(Double.parseDouble(items[1]));
 	        	aP.addPoint(pt);
 	        }
-			MeanShift mS = new MeanShift(aP,2);
-	    	clusters = mS.calculate();
-	    	for(Cluster cl : clusters) {
-	    		List<Point> points = new ArrayList<Point>();
-	    		points = cl.getPoints();
-	    		for(Point pt : points) {
+			
+	    	for(int i =0;i<aP.getnPoint();i++) {
+	    		Point pt = aP.getPoint(i);
+	    		
 	    			Circle circle = new Circle();
 	    			circle.setCenterX(30+20*pt.getX());
 	    			circle.setCenterY(30+193-15*pt.getY());
@@ -72,17 +72,21 @@ import javafx.stage.Stage;
 	    			circle.setFill(Color.BLACK);
 	    			anchorPane.getChildren().add(circle);
 	    			
-	    		}
+	    		
 	    	}
 		
 	    }
 	    
 	    @FXML
 	    public void run(ActionEvent event) {
+	    	
+	    	
+	    	MeanShift mS = new MeanShift(aP,2);
+	    	clusters = mS.calculate();
 	    	List<Color> color= new ArrayList<Color>();
 	    	color.add(Color.RED);
 	    	color.add(Color.BLUE);
-	    	color.add(Color.BLACK);
+	    	color.add(Color.YELLOW);
 	    	color.add(Color.LIGHTGRAY);
 	    	
 	    	for(Cluster cl : clusters) {
@@ -95,7 +99,7 @@ import javafx.stage.Stage;
 	    			circle.setRadius(3);
 	    			circle.setFill(color.get(cl.getId()));
 	    			anchorPane.getChildren().add(circle);
-	    			
+	    		
 	    		}
 	    	}
 	    	

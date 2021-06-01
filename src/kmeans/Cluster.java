@@ -40,14 +40,6 @@ public class Cluster {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public void print() {
-		System.out.println("[Cluster: " + id+"]");
-		System.out.println("[Centroid: " + center.getdToan() +", " + center.getdLy() + "]");
-		System.out.println("[Points: \n");
-		for(Student st1 : st) {
-			st1.printSt();
-		}
-		System.out.println("]");
-	}
+	
 	
 }

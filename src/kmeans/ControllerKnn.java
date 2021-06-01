@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -38,6 +39,7 @@ public class ControllerKnn implements Initializable{
     private TextField tf1;
     
     private List<Cluster> clusters = new ArrayList<Cluster>();
+    private ArrayList<Student> KNN = new ArrayList<Student>();
     private Class cl = new Class();
 	
     public void initialize(URL location, ResourceBundle resources) {
@@ -82,7 +84,7 @@ public class ControllerKnn implements Initializable{
     
     public void submit (ActionEvent event) {
     	int k = 2;
-    	
+    	DecimalFormat decimalFormat = new DecimalFormat("#.##");
     	String tfx = tf1.getText();
     	double x = Double.parseDouble(tfx);
     	String tfy = tf2.getText();
@@ -97,18 +99,26 @@ public class ControllerKnn implements Initializable{
     	int a = knn.findCluster();
     	st13.setID(a);
     	cl.addSt(st13);
-    	clusters.get(a).addStudent(st13);
+    	
     	String pr1 = new String();
-    	pr1 += "New point has been added to cluster "+ a + "\n";
+    	
     	for(Cluster cl : clusters) {				
 	    	List<Student> students = new ArrayList<Student>();
 	    	students = cl.getCluster();
 	    	pr1 += "##################\n"+ "Cluster" +(cl.getId()+1) + "\n";
 	    	for(Student st : students) {
 	    		pr1 += st.getName() + " "
-						+st.getdToan() + " "+ st.getdLy() + "\n";	    			
+						+st.getdToan() + "-"+ st.getdLy() +"   Dis:"+ decimalFormat.format(Student.distance(st, st13))+"\n";	    			
 	    	}
 	    }	
+    	KNN =	knn.getKnn();
+    	pr1 += "##################\n";
+    	for(Student st : KNN) {
+    		pr1 += st.getName() + " "
+					+st.getdToan() + "-"+ st.getdLy() +"   Dis:"+ decimalFormat.format(Student.distance(st, st13))+" cluster:" +(st.getID()+1) + "\n";	    			
+    	}
+    	pr1 += "New point has been added to cluster "+ (a+1) + "\n";
+    	clusters.get(a).addStudent(st13);
 		textArea1.setText(pr1);	
     }
     public void back(ActionEvent e) throws IOException {

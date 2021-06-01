@@ -22,6 +22,10 @@ public class Class {
 		this.setnStudent(this.getnStudent() + 1);
 		room.add(st);
 	}
+	public void removeSt(Student st) {
+		this.setnStudent(this.getnStudent() - 1);
+		room.remove(st);
+	}
 
 	public int getnStudent() {
 		return nStudent;

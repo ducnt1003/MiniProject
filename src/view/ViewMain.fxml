@@ -22,6 +22,6 @@
             </FXCollections>
         </items>
     </ChoiceBox>
-      <Label layoutX="169.0" layoutY="92.0" prefHeight="21.0" prefWidth="144.0" style="-fx-background-color: lightgray;" text="Clustering Algorithms" />
+      <Label layoutX="169.0" layoutY="92.0" prefHeight="21.0" prefWidth="141.0" style="-fx-background-color: lightgray;" text="Clustering Algorithms" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" />
    </children>
 </AnchorPane>

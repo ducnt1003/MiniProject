@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -43,7 +44,7 @@ public class ControllerKmeans implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		List<String> list = new ArrayList<String>();
 		try{
-            BufferedReader br = new BufferedReader(new FileReader("E:\\Eclipse\\test1.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("test1.txt"));
             String s = null;
             while((s = br.readLine())!=null){
             	list.add(s);
@@ -68,6 +69,7 @@ public class ControllerKmeans implements Initializable{
 	}
 	
 	public void submit (ActionEvent event) {
+		DecimalFormat decimalFormat = new DecimalFormat("#.##");
 		String km = textField.getText();
 		int k = Integer.parseInt(km);
 		
@@ -75,17 +77,18 @@ public class ControllerKmeans implements Initializable{
     	kmeans.init();
     	clusters = kmeans.calculate();   	
     	String pr = new String();
-					
-		for(Cluster cl : clusters) {				
-	    	List<Student> students = new ArrayList<Student>();
-	    	students = cl.getCluster();
-	    	pr += "##################\n"+ "Cluster" +(cl.getId()+1) + "\n";
-	    	for(Student st : students) {
-	    		pr += st.getName() + " "
-						+st.getdToan() + " "+ st.getdLy() + "\n";
-	    			
-	    	}
-	    }
+		pr=kmeans.getProcess();			
+//		for(Cluster cl : clusters) {				
+//	    	List<Student> students = new ArrayList<Student>();
+//	    	students = cl.getCluster();
+//	    	pr += "##################\n"+ "Cluster" +(cl.getId()+1) +
+//	    			 " Center:  " +decimalFormat.format(cl.getCenter().getdToan())  + "-"+ decimalFormat.format(cl.getCenter().getdLy()) +"\n";
+//	    	for(Student st : students) {
+//	    		pr += st.getName() + " "
+//						+st.getdToan() + " "+ st.getdLy() + "\n";
+//	    			
+//	    	}
+//	    }
 		
 		textArea.setText(pr);	
 	

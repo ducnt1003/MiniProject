@@ -1,5 +1,6 @@
 package kmeans;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import kmeans.Score;
@@ -15,6 +16,7 @@ public class Kmeans {
 		this.cl1 = cl1;
 		this.clusters = new ArrayList<Cluster>();
 	}
+	private String process = new String();
 	public void init() {
 		for(int i = 0; i < k; i++) {
 			Cluster cluster = new Cluster(i);
@@ -101,23 +103,36 @@ public class Kmeans {
 			for(int i =0 ; i < lastCenter.size(); i++) {
 				distance +=Score.distances(lastCenter.get(i), currentCenter.get(i));				
 			}
-        	        	
+        	process += "#################\n"+ "Iteration: " + iteration+ "\n" + plotClusters();       	
         	if(distance == 0) {
         		finish = true;
         		
-//        		System.out.println("#################");
+//        		System.out.println("#################"); 
 //            	System.out.println("Iteration: " + iteration);
 //            	plotClusters();
         	}
 		}
 		return clusters;
 	}
-	private void plotClusters() {
-    	for (int i = 0; i < k; i++) {
-    		Cluster c = clusters.get(i);
-    		c.print();
-    	}
-    }	    
+	private String plotClusters() {
+		DecimalFormat decimalFormat = new DecimalFormat("#.##");
+		String str = new String();
+		for(Cluster cl : clusters) {				
+	    	List<Student> students = new ArrayList<Student>();
+	    	students = cl.getCluster();
+	    	str += "##################\n"+ "Cluster" +(cl.getId()+1) +
+	    			 " Center:  " +decimalFormat.format(cl.getCenter().getdToan())  + "-"+ decimalFormat.format(cl.getCenter().getdLy()) +"\n";
+	    	for(Student st : students) {
+	    		str += st.getName() + " "
+						+st.getdToan() + " "+ st.getdLy() + "\n";
+	    			
+	    	}
+	    }
+    	return str;
+    }	
+	public String getProcess() {
+		return process;
+	}
 }
 	
 		
