@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="299.0" prefWidth="511.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kmeans.ControllerKnn">
+   <children>
+      <Button layoutX="398.0" layoutY="90.0" mnemonicParsing="false" onAction="#submit" text="Run" />
+      <Button layoutX="395.0" layoutY="150.0" mnemonicParsing="false" onAction="#back" text="Back" />
+      <TextArea fx:id="textArea1" layoutX="14.0" layoutY="126.0" prefHeight="159.0" prefWidth="338.0" />
+      <TextField fx:id="tf2" layoutX="256.0" layoutY="79.0" prefHeight="31.0" prefWidth="46.0" />
+      <Label layoutX="24.0" layoutY="84.0" prefHeight="19.0" prefWidth="51.0" text="Input x" />
+      <TextField fx:id="name" layoutX="85.0" layoutY="34.0" prefHeight="31.0" prefWidth="178.0" />
+      <TextField fx:id="tf1" layoutX="85.0" layoutY="79.0" prefHeight="31.0" prefWidth="46.0" />
+      <TextField fx:id="tf3" layoutX="444.0" layoutY="34.0" prefHeight="21.0" prefWidth="37.0" />
+      <Label layoutX="24.0" layoutY="39.0" text="Name" />
+      <Label layoutX="193.0" layoutY="80.0" text="Input y" />
+      <Label layoutX="378.0" layoutY="39.0" text="Input k" />
+      <Label layoutX="205.0" layoutY="4.0" text="Knn-Clustering" />
+   </children>
+</AnchorPane>
